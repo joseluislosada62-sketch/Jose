@@ -1,0 +1,185 @@
+<index.html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Caudal</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 30px;
+    color: white;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    animation: fadeIn 0.8s ease;
+}
+
+h2 {
+    color: #2a5298;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-calcular {
+    background: #2a5298;
+    color: white;
+}
+
+.btn-limpiar {
+    background: #e74c3c;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.resultado {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>💧 Calculadora de Caudal Volumétrico</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+    <h2>Concepto</h2>
+    <p>El caudal volumétrico mide la cantidad de fluido que fluye en un tiempo determinado.</p>
+    <p><strong>Fórmula: Q = V / t</strong></p>
+</div>
+
+<div class="card">
+    <h2>Funcionamiento</h2>
+    <p>Ingresa volumen y tiempo. El sistema calcula automáticamente el caudal en m³/s y L/s.</p>
+</div>
+
+<div class="card">
+    <h2>Aplicación</h2>
+    <ul>
+        <li>Sistemas de riego</li>
+        <li>Procesos industriales</li>
+        <li>Control de consumo de agua</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Calculadora</h2>
+
+    <input type="number" id="volumen" placeholder="Volumen (m³)">
+    <input type="number" id="tiempo" placeholder="Tiempo (s)">
+
+    <button class="btn-calcular" onclick="calcular()">Calcular</button>
+    <button class="btn-limpiar" onclick="limpiar()">Limpiar</button>
+
+    <div class="resultado" id="resultado"></div>
+</div>
+
+<div class="card">
+    <h2>Propuesta de valor</h2>
+    <p>Herramienta rápida, precisa y fácil de usar para mejorar cálculos en procesos reales.</p>
+</div>
+
+<div class="card">
+    <h2>Equipo de trabajo</h2>
+    <ul>
+        <li>Jose Luis Losada</li>
+        <li>Mario Alberto Correa</li>
+    </ul>
+</div>
+
+</div>
+
+<footer>
+    <p>Proyecto académico</p>
+</footer>
+
+<script>
+function calcular() {
+    let v = parseFloat(document.getElementById("volumen").value);
+    let t = parseFloat(document.getElementById("tiempo").value);
+    let res = document.getElementById("resultado");
+
+    if (isNaN(v) || isNaN(t)) {
+        res.innerHTML = "⚠️ Ingrese valores válidos";
+        return;
+    }
+
+    if (t === 0) {
+        res.innerHTML = "⚠️ El tiempo no puede ser 0";
+        return;
+    }
+
+    let q = v / t;
+    let q_l = q * 1000;
+
+    res.innerHTML = `
+        Resultado:<br>
+        ${q.toFixed(4)} m³/s<br>
+        ${q_l.toFixed(2)} L/s
+    `;
+}
+
+function limpiar() {
+    document.getElementById("volumen").value = "";
+    document.getElementById("tiempo").value = "";
+    document.getElementById("resultado").innerHTML = "";
+}
+</script>
+
+</body>
+</html>
